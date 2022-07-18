@@ -19,9 +19,4 @@ def games_detail(request, game_id):
   game = Game.objects.get(id=game_id)
   return render(request, 'games/detail.html', {
     'game': game
-  })
-
-class GameCreate(CreateView):
-  model = Game
-  fields = '__all__'
-  success_url = '/games/'
+  }) 
