@@ -19,13 +19,9 @@ def games_detail(request, game_id):
   game = Game.objects.get(id=game_id)
   return render(request, 'games/detail.html', {
     'game': game
-<<<<<<< HEAD
   })
 
 class GameCreate(CreateView):
   model = Game
   fields = '__all__'
   success_url = '/games/'
-=======
-  }) 
->>>>>>> c4e9473 (Clearing)
