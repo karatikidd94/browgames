@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.views.generic.edit import CreateView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from . models import Game
 
 
@@ -26,3 +26,10 @@ class GameCreate(CreateView):
   fields = '__all__'
   success_url = '/games/'
 
+class GameUpdate(UpdateView):
+  model = Game
+  fields = '__all__'
+  
+class GameDelete(DeleteView):
+  model = Game
+  success_url = '/games/'
