@@ -10,12 +10,58 @@ RATINGS = (
     (4, 4),
     (5, 5)
 )
+
+GENRES = (
+    ('A', 'Action'),
+    ('AV', 'Adventure'),
+    ('C', 'Casual'),
+    ('I', 'Indie'),
+    ('MMO', 'Massively Multiplayer Online Game'),
+    ('R', 'Racing'),
+    ('S', 'Sports'),
+    ('SM', 'Simulation'),
+    ('RPG', 'Role Playing Game'),
+    ('ST', 'Strategy'),
+    ('F', 'Free To Play'),
+    ('EA', 'Early Access'),
+    ('H', 'Horror'),
+    ('D', 'Dating'),
+    ('P', 'Puzzle'),
+    ('VN', 'Visual Novel'),
+    ('HO', 'Hidden Object'),
+    ('SB', 'Sandbox Games'),
+    ('TPS', 'Third Person Shooter'),
+    ('FPS', 'First Person Shooter'),
+    ('FR', 'Farming'),
+    ('OW', 'Open World'),
+    ('SU', 'Survival'),
+    ('RY', 'Rhythm'),
+    ('BG', 'Boardgame'),
+    ('CG', 'Cardgame'),
+    ('PB', 'Party Based'),
+    ('SF', 'Science Fiction'),
+    ('CO', 'Cooperative')
+)
+
 # Create your models here.
+class Genre(models.Model):
+    name = models.CharField(
+        max_length=150,
+        choices=GENRES,
+        default=GENRES[0][0])
+    
+    def __str__(self):
+        return self.name
+
+    def get_absolute_url(self):
+        return reverse('genres_detail', kwargs={'pk': self.id})
+
 class Game(models.Model):
     title = models.CharField(max_length=100)
     description = models.TextField(max_length=1000)
     link = models.CharField(max_length=1000)
     creator = models.CharField(max_length=50)
+    genres = models.ManyToManyField(Genre)
 
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
