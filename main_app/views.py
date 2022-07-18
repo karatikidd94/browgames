@@ -25,3 +25,4 @@ class GameCreate(CreateView):
   model = Game
   fields = '__all__'
   success_url = '/games/'
+
