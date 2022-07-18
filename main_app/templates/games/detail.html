@@ -26,11 +26,50 @@
          {% endfor %}
     </div>
 </div>
+<hr>
+<div class="card">
+  <div class="card content">
+    <h3>{{ game.title }}'s Genres</h3>
+      {% if game.genres.count %}
+        {% for genre in game.genres.all %}
+          <div class="card">
+            <div class="card-content">
+              <span class="card-title">
+                {{ genre.name }}
+              </span>
+            </div>
+          </div>
+        {% endfor %}
+      {% else %}
+        <h5>No Genres :(</h5>
+      {% endif %}
+  </div>
+</div>
+<div class="card">
+  <h3>Available Genres</h3>
+  {% if genres.count %}
+      {% for genre in genres.all %}
+        <div class="card">
+          <div class="card-content">
+            <span class="card-title">
+              {{ genre.name }}
+            </span>
+          </div>
+          <div class="card-action">
+            <form action="{% url 'assoc_genre' game.id genre.id %}" method="POST">
+              {% csrf_token %}
+              <button type="submit" class="btn">Add</button>
+            </form>
+          </div>
+        </div>
+      {% endfor %}
+    {% else %}
+      <h5>{{game.title}} Already Has All Genres Available</h5>
+    {% endif %}
+<script>
 
-  <script>
-
-    const selectEl = document.getElementById('id_rating');
-    M.FormSelect.init(selectEl);
+  const selectEl = document.getElementById('id_rating');
+  M.FormSelect.init(selectEl);
     
 </script>
 {% endblock %}

@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
-from . models import Game
+from . models import Game, Genre
 from .forms import CommentForm
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
@@ -23,11 +23,19 @@ def games_index(request):
 @login_required
 def games_detail(request, game_id):
   game = Game.objects.get(id=game_id)
+  id_list = game.genres.all().values_list('id')
+  genres_game_doesnt_have = Genre.objects.exclude(id__in=id_list)
   comment_form = CommentForm()
+  print(genres_game_doesnt_have)
   return render(request, 'games/detail.html', {
     'game': game,
-    'comment_form': comment_form
+    'comment_form': comment_form,
+    'genres_game_doesnt_have': genres_game_doesnt_have
   })
+
+def assoc_genre(request, game_id, genre_id):
+  Game.objects.get(id=game_id).genres.add(genre_id)
+  return redirect('detail', game_id=game_id)
 
 class GameCreate(LoginRequiredMixin, CreateView):
   model = Game
@@ -40,7 +48,13 @@ class GameCreate(LoginRequiredMixin, CreateView):
 
 class GameUpdate(LoginRequiredMixin, UpdateView):
   model = Game
-  fields = '__all__'
+  fields = ['title', 'description', 'link', 'creator']
+
+  def form_valid(self, form):
+    # form.instance.user = self.request.user
+    print(self)
+    print(form)
+    return super().form_valid(form)
   
 class GameDelete(LoginRequiredMixin, DeleteView):
   model = Game
