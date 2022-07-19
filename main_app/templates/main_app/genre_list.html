@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>Genre List</h1>
+
+{% for genre in genre_list %}
+    <div class="card">
+        <div class="card-content">
+            <span class="card-title">{{ genre.name }}</span>
+        </div>
+    </div>
+  </a>
+{% endfor %}
+
+{% endblock %}

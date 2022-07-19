@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.views.generic import ListView
 from . models import Game, Genre
 from .forms import CommentForm
 from django.contrib.auth import login
@@ -30,7 +31,7 @@ def games_detail(request, game_id):
   return render(request, 'games/detail.html', {
     'game': game,
     'comment_form': comment_form,
-    'genres_game_doesnt_have': genres_game_doesnt_have
+    'genres': genres_game_doesnt_have
   })
 
 def assoc_genre(request, game_id, genre_id):
@@ -68,6 +69,14 @@ def add_comment(request, game_id):
         new_comment.game_id = game_id
         new_comment.save()
     return redirect('detail', game_id=game_id)
+
+class GenreList(LoginRequiredMixin, ListView):
+    model = Genre
+
+class GenreCreate(LoginRequiredMixin, CreateView):
+    model = Genre
+    fields = '__all__'
+    success_url = '/genres/'
 
 def signup(request):
   error_message = ''
