@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import ListView
-from . models import Game, Genre, Comment, Photo
+from . models import Game, Genre, Comment, Photo, Profile
 from .forms import CommentForm
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
@@ -82,6 +82,10 @@ class GenreCreate(LoginRequiredMixin, CreateView):
     model = Genre
     fields = '__all__'
     success_url = '/genres/'
+
+def profiles_index(request):
+  profiles = Profile.objects.all()
+  return render(request, 'profiles/index.html', { 'profiles': profiles })
 
 @login_required
 def add_photo(request, game_id):
