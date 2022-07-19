@@ -45,10 +45,7 @@ GENRES = (
 
 # Create your models here.
 class Genre(models.Model):
-    name = models.CharField(
-        max_length=150,
-        choices=GENRES,
-        default=GENRES[0][0])
+    name = models.CharField(max_length=150)
     
     def __str__(self):
         return self.name
@@ -61,6 +58,7 @@ class Game(models.Model):
     description = models.TextField(max_length=1000)
     link = models.CharField(max_length=1000)
     creator = models.CharField(max_length=50)
+    
     genres = models.ManyToManyField(Genre)
 
     user = models.ForeignKey(User, on_delete=models.CASCADE)
