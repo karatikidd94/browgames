@@ -51,11 +51,11 @@ class GameUpdate(LoginRequiredMixin, UpdateView):
   model = Game
   fields = ['title', 'description', 'link', 'creator']
 
-  def form_valid(self, form):
-    # form.instance.user = self.request.user
-    print(self)
-    print(form)
-    return super().form_valid(form)
+#   def form_valid(self, form):
+#     form.instance.user = self.request.user
+#     print(self)
+#     print(form)
+#     return super().form_valid(form)
   
 class GameDelete(LoginRequiredMixin, DeleteView):
   model = Game
