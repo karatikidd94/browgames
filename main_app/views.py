@@ -39,7 +39,7 @@ def assoc_genre(request, game_id, genre_id):
 
 class GameCreate(LoginRequiredMixin, CreateView):
   model = Game
-  fields = '__all__'
+  fields = ['title', 'description', 'link', 'creator']
   success_url = '/games/'
 
   def form_valid(self, form):
