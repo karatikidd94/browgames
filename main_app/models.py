@@ -11,38 +11,6 @@ RATINGS = (
     (5, 5)
 )
 
-GENRES = (
-    ('A', 'Action'),
-    ('AV', 'Adventure'),
-    ('C', 'Casual'),
-    ('I', 'Indie'),
-    ('MMO', 'Massively Multiplayer Online Game'),
-    ('R', 'Racing'),
-    ('S', 'Sports'),
-    ('SM', 'Simulation'),
-    ('RPG', 'Role Playing Game'),
-    ('ST', 'Strategy'),
-    ('F', 'Free To Play'),
-    ('EA', 'Early Access'),
-    ('H', 'Horror'),
-    ('D', 'Dating'),
-    ('P', 'Puzzle'),
-    ('VN', 'Visual Novel'),
-    ('HO', 'Hidden Object'),
-    ('SB', 'Sandbox Games'),
-    ('TPS', 'Third Person Shooter'),
-    ('FPS', 'First Person Shooter'),
-    ('FR', 'Farming'),
-    ('OW', 'Open World'),
-    ('SU', 'Survival'),
-    ('RY', 'Rhythm'),
-    ('BG', 'Boardgame'),
-    ('CG', 'Cardgame'),
-    ('PB', 'Party Based'),
-    ('SF', 'Science Fiction'),
-    ('CO', 'Cooperative')
-)
-
 # Create your models here.
 class Genre(models.Model):
     name = models.CharField(max_length=150)
@@ -87,3 +55,7 @@ class Photo(models.Model):
 
     def __str__(self):
         return f"Photo for game_id: {self.game_id} @{self.url}"
+
+class Profile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    games = models.ForeignKey(Game, on_delete=models.CASCADE)
