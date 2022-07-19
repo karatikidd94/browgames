@@ -43,10 +43,10 @@
          {% for comment in game.comment_set.all %}
               <p>Rating: {{ comment.rating }}</p>
               <p>Comment: {{ comment.comment }}</p>
-              {% if user.id == game.user_id %}
+              {% if user.id == comment.user_id %}
                 <a href="{% url 'comment_update' game.id %}">Edit</a>
                 <a href="{% url 'comment_delete' game.id %}">Delete</a>
-            {% endif %}
+              {% endif %}
          {% endfor %}
     </div>
 </div>
