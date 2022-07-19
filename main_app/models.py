@@ -76,6 +76,7 @@ class Comment(models.Model):
     comment = models.TextField(max_length=1000)
 
     game = models.ForeignKey(Game, on_delete=models.CASCADE)
+   
 
     def __str__(self):
         return f"Rating: {self.get_rating_display()} Comment: {self.comment}"
