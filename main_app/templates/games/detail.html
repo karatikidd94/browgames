@@ -6,11 +6,14 @@
     <div class="card-content">
       <span class="card-title">{{ game.title }}</span>
       <p>Description: {{ game.description }}</p>
+      <p>Creator: {{ game.creator }}</p>
       <p>Link: {{ game.link }}</p>
     </div>
     <div class="card-action">
-      <a href="{% url 'games_update' game.id %}">Edit</a>
-      <a href="{% url 'games_delete' game.id %}">Delete</a>
+      {% if user.id == game.user_id %}
+        <a href="{% url 'games_update' game.id %}">Edit</a>
+        <a href="{% url 'games_delete' game.id %}">Delete</a>
+      {% endif %}
     </div>
   </div>
   <div class="card">
@@ -45,6 +48,7 @@
       {% endif %}
   </div>
 </div>
+{% if user.id == game.user_id %}
 <div class="card">
   <h3>Available Genres</h3>
   {% if genres.count %}
@@ -66,6 +70,7 @@
     {% else %}
       <h5>{{game.title}} Already Has All Genres Available</h5>
     {% endif %}
+  {% endif %}
 <script>
 
   const selectEl = document.getElementById('id_rating');
