@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import ListView
-from . models import Game, Genre, Photo
+from . models import Game, Genre, Comment, Photo
 from .forms import CommentForm
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
@@ -53,12 +53,6 @@ class GameCreate(LoginRequiredMixin, CreateView):
 class GameUpdate(LoginRequiredMixin, UpdateView):
   model = Game
   fields = ['title', 'description', 'link', 'creator']
-
-#   def form_valid(self, form):
-#     form.instance.user = self.request.user
-#     print(self)
-#     print(form)
-#     return super().form_valid(form)
   
 class GameDelete(LoginRequiredMixin, DeleteView):
   model = Game
@@ -72,6 +66,14 @@ def add_comment(request, game_id):
         new_comment.game_id = game_id
         new_comment.save()
     return redirect('detail', game_id=game_id)
+
+class CommentUpdate(LoginRequiredMixin, UpdateView):
+  model = Comment
+  fields = '__all__'
+
+class CommentDelete(LoginRequiredMixin, DeleteView):
+  model = Comment
+  success_url = '/games/'
 
 class GenreList(LoginRequiredMixin, ListView):
     model = Genre
