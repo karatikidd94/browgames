@@ -16,7 +16,7 @@
     <nav>
       <div class="nav-wrapper">
         <ul>
-          <li><a href="/" class="left brand-logo">&nbsp;&nbsp;Brow Game</a></li>
+          <li><a href="/" class="left brand-logo">&nbsp;&nbsp;Brow Games :)</a></li>
         </ul>
         <ul class="right">
           <li><a href="/about">About</a></li>
@@ -26,6 +26,7 @@
             <li><a href="/games">Games</a></li>
             <li><a href="{% url 'games_create' %}">Add Game</a></li>
             <li><a href="/profiles">Profiles</a></li>
+            <!-- <li><a href="{% url 'profile_create' %}">Add Profile</a></li> -->
             <li><a href="{% url 'logout' %}">Log Out</a></li>
           {% else %}
             <li><a href="{% url 'signup' %}">Sign Up</a></li>
@@ -40,7 +41,7 @@
     {% endblock %}
   </main>
   <footer class="page-footer">
-    <div class="right">All Rights Reserved, &copy; 2022 Brow Game &nbsp;</div>
+    <div class="right">All Rights Reserved, &copy; 2022 Brow Games &nbsp;</div>
   </footer>
 </body>
 </html>
