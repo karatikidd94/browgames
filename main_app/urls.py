@@ -17,5 +17,6 @@ urlpatterns = [
     path('genres/', views.GenreList.as_view(), name='genres_index'),
     path('genres/create/', views.GenreCreate.as_view(), name='genres_create'),
     path('accounts/signup/', views.signup, name='signup'),
-    path('profiles/', views.profiles_index, name='profile_index')
+    path('profiles/', views.profiles_index, name='profile_index'),
+    path('profile/', views.profile, name='users-profile'),
 ]

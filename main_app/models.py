@@ -49,13 +49,20 @@ class Comment(models.Model):
     def __str__(self):
         return f"Rating: {self.get_rating_display()} Comment: {self.comment}"
 
+class Profile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+
+    bio = models.TextField(max_length=1500)
+    games = models.ForeignKey(Game, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.user.username
+
 class Photo(models.Model):
     url = models.CharField(max_length=200)
     game = models.ForeignKey(Game, on_delete=models.CASCADE)
+    profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
 
     def __str__(self):
         return f"Photo for game_id: {self.game_id} @{self.url}"
 
-class Profile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
-    games = models.ForeignKey(Game, on_delete=models.CASCADE)

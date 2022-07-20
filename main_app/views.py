@@ -3,10 +3,13 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import ListView
 from . models import Game, Genre, Comment, Photo, Profile
 from .forms import CommentForm
+from django.db.models.signals import post_save
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.dispatch import receiver
 import os
 import uuid
 import boto3
@@ -82,6 +85,18 @@ class GenreCreate(LoginRequiredMixin, CreateView):
     model = Genre
     fields = '__all__'
     success_url = '/genres/'
+
+def profile(request):
+  return render(request, 'users/profile.html')
+
+@receiver(post_save, sender=User)
+def create_profile(sender, instance, created, **kwargs):
+  if created:
+    Profile.objects.create(user=instance)
+
+@receiver(post_save, sender=User)
+def save_profile(sender, instance, **kwargs):
+  instance.profile.save()
 
 def profiles_index(request):
   profiles = Profile.objects.all()
