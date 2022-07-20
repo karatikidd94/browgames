@@ -7,9 +7,9 @@ from django.db.models.signals import post_save
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.dispatch import receiver
 import os
 import uuid
 import boto3
@@ -86,21 +86,23 @@ class GenreCreate(LoginRequiredMixin, CreateView):
     fields = '__all__'
     success_url = '/genres/'
 
-def profile(request):
-  return render(request, 'users/profile.html')
-
-@receiver(post_save, sender=User)
-def create_profile(sender, instance, created, **kwargs):
-  if created:
-    Profile.objects.create(user=instance)
-
-@receiver(post_save, sender=User)
-def save_profile(sender, instance, **kwargs):
-  instance.profile.save()
-
 def profiles_index(request):
   profiles = Profile.objects.all()
   return render(request, 'profiles/index.html', { 'profiles': profiles })
+
+def profile_detail(request, profile_id):
+  profile = Profile.objects.get(id=profile_id)
+  return render(request, 'profiles/detail.html', { 'profile': profile })
+  
+
+class ProfileCreate(LoginRequiredMixin, CreateView):
+  model = Profile
+  fields = ['username', 'bio', 'contact_info']
+  success_url = '/profiles/'
+
+  def form_valid(self, form):
+    form.instance.user = self.request.user
+    return super().form_valid(form)
 
 @login_required
 def add_photo(request, game_id):
@@ -125,7 +127,7 @@ def signup(request):
     if form.is_valid():
       user = form.save()
       login(request, user)
-      return redirect('index')
+      return redirect('profile_create')
     else:
       error_message = 'Invalid sign up - try again'
   form = UserCreationForm()

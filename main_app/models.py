@@ -1,4 +1,5 @@
 from django.db import models
+from django.forms import CharField
 from django.urls import reverse
 from datetime import date
 from django.contrib.auth.models import User
@@ -50,13 +51,18 @@ class Comment(models.Model):
         return f"Rating: {self.get_rating_display()} Comment: {self.comment}"
 
 class Profile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
-
+    username = models.CharField(max_length=100)
+    contact_info = models.TextField(max_length=1000)
     bio = models.TextField(max_length=1500)
-    games = models.ForeignKey(Game, on_delete=models.CASCADE)
+
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    #games = models.ForeignKey(Game, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.user.username
+        return self.username
+
+    def get_absolute_url(self):
+        return reverse('detail', kwargs={'profile_id': self.id})
 
 class Photo(models.Model):
     url = models.CharField(max_length=200)
