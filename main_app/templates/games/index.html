@@ -5,14 +5,13 @@
 <h1>Game List</h1>
 <br />
 {% for game in games %}
-  <div class="card">
-    <a href="{% url 'detail' game.id %}">
-      <div class="card-content">
-        <span class="card-title">{{ game.title }}</span>
-        <p>{{ game.description }}</p>
-      </div>
-    </a>
+<div class="card">
+  <div class="card-content">
+    <span class="card-title">{{ game.title }}</span>
+    <p>{{ game.description }}</p>
+    <a class="btn stretched-link white-text" href="{% url 'detail' game.id %}" style="background-color: lightslategrey;">Details</a>
   </div>
+</div>
 {% endfor %}
 
 {% endblock %}
