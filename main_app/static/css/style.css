@@ -26,7 +26,7 @@ button.play {
   height: 50px;
 }
 
-a {
+.play-link {
   color: white;
   font-size: 35px;
 }
