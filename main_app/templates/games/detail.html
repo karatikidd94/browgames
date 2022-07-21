@@ -26,7 +26,7 @@
       <span class="card-title">{{ game.title }}</span>
       <p>Description: {{ game.description }}</p>
       <p>Creator: {{ game.creator }}</p>
-      <p><button class="play"><a href=" {{ game.link }} " target="_blank">Play!</a></p>
+      <button class="play"><a href=" {{ game.link }} " target="_blank">Play!</a>
     </div>
     <div class="card-action">
       {% if user.id == game.user_id %}
