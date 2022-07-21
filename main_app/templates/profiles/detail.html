@@ -8,6 +8,12 @@
         <p>{{ profile.contact_info }}</p>
         <p>{{ profile.bio }}</p>
     </div>
+    {% if user.id == profile.user_id %}
+    <div class="card-action">
+        <a href="{% url 'profile_update' profile.id %}">Edit</a>
+        <a href="{% url 'profile_delete' profile.id %}">Delete</a>
+    </div>
+    {% endif %}
 </div>
 
 
