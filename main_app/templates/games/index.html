@@ -8,8 +8,7 @@
     <a href="{% url 'detail' game.id %}">
       <div class="card-content">
         <span class="card-title">{{ game.title }}</span>
-        <p>Description: {{ game.description }}</p>
-        <p>Link: {{ game.link }}</p>
+        <p>{{ game.description }}</p>
       </div>
     </a>
   </div>

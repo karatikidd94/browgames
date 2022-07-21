@@ -94,7 +94,6 @@ def profile_detail(request, profile_id):
   profile = Profile.objects.get(id=profile_id)
   return render(request, 'profiles/detail.html', { 'profile': profile })
   
-
 class ProfileCreate(LoginRequiredMixin, CreateView):
   model = Profile
   fields = ['username', 'bio', 'contact_info']
@@ -103,6 +102,15 @@ class ProfileCreate(LoginRequiredMixin, CreateView):
   def form_valid(self, form):
     form.instance.user = self.request.user
     return super().form_valid(form)
+
+class ProfileUpdate(LoginRequiredMixin, UpdateView):
+  model = Profile
+  fields = ['username', 'bio', 'contact_info']
+  success_url = '/profiles/'
+
+class ProfileDelete(LoginRequiredMixin, DeleteView):
+  model = Profile
+  success_url = '/profiles/'
 
 @login_required
 def add_photo(request, game_id):
