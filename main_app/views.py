@@ -35,6 +35,7 @@ def games_detail(request, game_id):
   comment_form = CommentForm()
   print(genres_game_doesnt_have)
   return render(request, 'games/detail.html', {
+<<<<<<< HEAD
     'game': game,
     'comment_form': comment_form,
     'genres': genres_game_doesnt_have
@@ -141,3 +142,7 @@ def signup(request):
   form = UserCreationForm()
   context = {'form': form, 'error_message': error_message}
   return render(request, 'registration/signup.html', context)
+=======
+    'game': game
+  }) 
+>>>>>>> c4e9473c994e565af92128c63db97ab40617d49c
