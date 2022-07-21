@@ -13,17 +13,3 @@ footer.page-footer {
   padding-top: 0;
   text-align: right;
 }
-
-a {
-  color: red;
-  text-decoration: none;
-  text-transform: uppercase;
-}
-
-div.navbar {
-  color: #fff;
-  background-color: lightslategrey;
-  width: 100%;
-  height: 56px;
-  line-height: 56px;
-}
