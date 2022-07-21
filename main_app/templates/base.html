@@ -27,7 +27,7 @@
             </button>
             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
               {% if user.is_authenticated %}
-                <li>
+              <li>
                   <a class="dropdown-item" href="/about">About</a>
                   <a class="dropdown-item" href="{% url 'genres_index' %}">Genres</a>
                   <a class="dropdown-item" href="{% url 'genres_create' %}">Add Genre</a>
