@@ -26,7 +26,7 @@
       <h5>Creator:</h5> 
       <p>{{ game.creator }}</p>
       <br />
-      <button class="play"><a class="play-link" href=" {{ game.link }} " target="_blank">Play!</a>
+      <button class="play"><a class="play-link" href=" {{ game.link }} " target="_blank"><img src="https://i.imgur.com/oZjkKDd.png?1" alt="Play" class="play-now"></a>
     </div>
     <div class="card-action">
       {% if user.id == game.user_id %}
