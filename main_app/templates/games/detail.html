@@ -35,11 +35,13 @@
       {% endif %}
     </div>
   </div>
+  <br />
     <form action="{% url 'add_comment' game.id %}" method="POST">
       {% csrf_token %}
       {{ comment_form.as_p }}
       <input type="submit" class="btn" value="Add Comment">
     </form>
+  <br />
   <hr />
     {% for comment in game.comment_set.all %}
       <h5>Rating:</h5>
@@ -48,22 +50,20 @@
       <p>{{ comment.comment }}</p>
       <hr />
     {% endfor %}
-<div class="card">
-  <div class="card content">
+    <br />
     <h3>{{ game.title }}'s Genres</h3>
       {% if game.genres.count %}
         {% for genre in game.genres.all %}
           <span class="card-title">
             {{ genre.name }}
+            <br />
           </span>
         {% endfor %}
       {% else %}
         <h5>No Genres :(</h5>
       {% endif %}
-  </div>
-</div>
+    <br />
 {% if user.id == game.user_id %}
-<div class="card">
   <h3>Available Genres</h3>
   {% if genres.count %}
       {% for genre in genres.all %}
