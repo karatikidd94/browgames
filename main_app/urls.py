@@ -20,4 +20,6 @@ urlpatterns = [
     path('profiles/', views.profiles_index, name='profile_index'),
     path('profiles/create/', views.ProfileCreate.as_view(), name="profile_create"),
     path('profiles/<int:profile_id>/', views.profile_detail, name='profile_detail'),
+    path('profiles/<int:pk>/update/', views.ProfileUpdate.as_view(), name="profile_update"),
+    path('profiles/<int:pk>/delete/', views.ProfileDelete.as_view(), name="profile_delete"),
 ]
