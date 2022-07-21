@@ -15,42 +15,32 @@
 </head>
 <body>
   <header class="navbar-fixed">
-    <nav>
-      <div class="nav-wrapper">
-        <ul>
-          <li><a href="/" class="left brand-logo">&nbsp;&nbsp;Brow Games :)</a></li>
+  <nav style="background-color: lightslategrey;">
+    <div class="nav-wrapper">
+      <ul>
+          <li><a href="{% url 'home' %}" class="left brand-logo">&nbsp;&nbsp;Brow Games</a></li>
         </ul>
         <ul class="right">
-          <div class="dropdown">
-            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false" style="margin-right: 20px;">
-              Dropdown button
-            </button>
-            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-              {% if user.is_authenticated %}
-                <li>
-                  <a class="dropdown-item" href="/about">About</a>
-                  <a class="dropdown-item" href="{% url 'genres_index' %}">Genres</a>
-                  <a class="dropdown-item" href="{% url 'genres_create' %}">Add Genre</a>
-                  <a class="dropdown-item" href="/games">Games</a>
-                  <a class="dropdown-item" href="{% url 'games_create' %}">Add Game</a>
-                  <a class="dropdown-item" href="/profiles">Profiles</a>
-                  <a class="dropdown-item" href="{% url 'logout' %}">Log Out</a>
-                </li>
-              {% else %}
-                <li><a class="dropdown-item" href="{% url 'signup' %}">Sign Up</a>
-                <a class="dropdown-item" href="{% url 'login' %}">Log In</a></li>
-              {% endif %}
-            </ul>
-          </div>
-        </ul>
-      </div>
-    </nav>
+          <li><a href="{% url 'about' %}">About</a></li>
+        {% if user.is_authenticated %}
+          <li><a href="{% url 'genres_create' %}">Add Genre</a></li>
+          <li><a href="{% url 'genres_index' %}">Genres</a></li>
+          <li><a href="{% url 'games_create' %}">Add Game</a></li>
+          <li><a href="/games">Games</a></li>
+          <li><a href="{% url 'logout' %}">Log Out</a></li>
+        {% else %}
+          <li><a href="{% url 'signup' %}">Sign Up</a></li>
+          <li><a href="{% url 'login' %}">Log In</a></li>
+        {% endif %}
+      </ul>
+    </div>
+  </nav>
   </header>
   <main class="container">
     {% block content %}
     {% endblock %}
   </main>
-  <footer class="page-footer">
+  <footer class="page-footer" style="background-color: lightslategrey;">
     <div class="right">All Rights Reserved, &copy; 2022 Brow Games &nbsp;</div>
   </footer>
 </body>
