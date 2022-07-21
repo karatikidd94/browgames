@@ -5,12 +5,11 @@
 <br />
 {% for profile in profiles %}
     <div class="card">
-        <a href="{% url 'profile_detail' profile.id %}">
-            <div class="card-content">
-                <span class="card-title">{{ profile.username }}</span>
-                <p>{{ profile.bio }}</p>
-            </div>
-        </a>
+        <div class="card-content">
+            <span class="card-title">{{ profile.username }}</span>
+            <p>{{ profile.bio }}</p>
+            <a class="btn stretched-link white-text" href="{% url 'profile_detail' profile.id %}">Details</a>
+        </div>
     </div>
 {% endfor %}
 
