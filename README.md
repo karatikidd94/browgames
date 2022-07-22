@@ -24,7 +24,7 @@ ScreenShots:
 Project Planning
 - Notion: https://www.notion.so/Team-Home-edff3bbc11dd444aa95e48fe68560f2c
 
-- Trello Board: https://trello.com/b/3vFLArYM/copypaste
+- Trello Board: https://trello.com/b/uBT388ux/team-copypaste
 
 - Lucid ERD:
 <img width="621" alt="Screen Shot 2022-07-19 at 2 57 00 PM" src="https://user-images.githubusercontent.com/93361045/180321433-9e138f7d-062a-42c1-8c6a-e63dbf6cd5f9.png">
